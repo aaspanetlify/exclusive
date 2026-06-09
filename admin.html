@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Panel — Exclusive iPhones RSA</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--blue:#0a2a5e;--blue-dark:#061a3d;--blue-mid:#1a4a8a;--red:#e74c3c;--green:#27ae60;--text:#1a1a1a;--text-muted:#888;--bg:#f0f4fa;--card:#fff;--border:#e0e8f0;--radius:12px;}
+body{font-family:'DM Sans',sans-serif;font-size:14px;color:var(--text);background:var(--bg);min-height:100vh}
+
+/* LOGIN */
+#loginScreen{position:fixed;inset:0;background:linear-gradient(140deg,#020d1f,#061a3d,#0a3a7a);display:flex;align-items:center;justify-content:center;z-index:1000}
+.login-box{background:#fff;border-radius:20px;padding:48px 40px;width:360px;max-width:90vw;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.4)}
+.login-logo{width:60px;height:60px;background:linear-gradient(135deg,#0a2a5e,#1a4a8a);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:24px;margin:0 auto 20px}
+.login-box h2{font-size:20px;font-weight:800;color:var(--blue-dark);margin-bottom:6px}
+.login-box p{font-size:13px;color:var(--text-muted);margin-bottom:28px}
+.login-field{width:100%;padding:12px 16px;border:1.5px solid var(--border);border-radius:10px;font-size:14px;font-family:inherit;outline:none;margin-bottom:14px;transition:.2s}
+.login-field:focus{border-color:var(--blue)}
+.login-btn{width:100%;padding:13px;background:var(--blue-dark);color:#fff;border:none;border-radius:28px;font-size:14px;font-weight:700;cursor:pointer;transition:.2s}
+.login-btn:hover{background:var(--blue-mid)}
+.login-error{color:var(--red);font-size:12.5px;margin-top:10px;display:none}
+
+/* LAYOUT */
+#adminApp{display:none}
+.admin-header{background:var(--blue-dark);color:#fff;padding:0 28px;height:64px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.admin-header-left{display:flex;align-items:center;gap:14px}
+.admin-logo{width:40px;height:40px;background:rgba(255,255,255,.15);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px}
+.admin-header h1{font-size:16px;font-weight:700}
+.admin-header p{font-size:11px;opacity:.7;margin-top:1px}
+.admin-header-right{display:flex;align-items:center;gap:12px}
+.header-pill{display:flex;align-items:center;gap:6px;font-size:12px;padding:6px 14px;border-radius:20px;background:rgba(255,255,255,.12);cursor:pointer;transition:.2s;border:none;color:#fff;font-family:inherit}
+.header-pill:hover{background:rgba(255,255,255,.22)}
+.live-dot{width:8px;height:8px;border-radius:50%;background:#2ecc71;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+
+.admin-body{max-width:1200px;margin:0 auto;padding:32px 24px}
+
+/* STATS */
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:32px}
+.stat-card{background:var(--card);border:1.5px solid var(--border);border-radius:var(--radius);padding:20px 22px}
+.stat-card h3{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--text-muted);margin-bottom:8px}
+.stat-card .num{font-size:28px;font-weight:800;color:var(--blue-dark)}
+.stat-card .sub{font-size:12px;color:var(--text-muted);margin-top:3px}
+
+/* TABS */
+.tabs{display:flex;gap:6px;margin-bottom:24px;flex-wrap:wrap}
+.tab{padding:9px 20px;border-radius:22px;font-size:13px;font-weight:600;cursor:pointer;transition:.2s;border:1.5px solid var(--border);background:#fff;color:var(--text)}
+.tab.active{background:var(--blue-dark);color:#fff;border-color:var(--blue-dark)}
+
+/* TOOLBAR */
+.toolbar{display:flex;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap}
+.toolbar-search{flex:1;min-width:200px;position:relative}
+.toolbar-search input{width:100%;padding:10px 38px 10px 16px;border:1.5px solid var(--border);border-radius:22px;font-size:13px;font-family:inherit;outline:none;background:#fff;transition:.2s}
+.toolbar-search input:focus{border-color:var(--blue)}
+.toolbar-search i{position:absolute;right:13px;top:50%;transform:translateY(-50%);color:var(--text-muted);font-size:13px}
+.btn-add{display:flex;align-items:center;gap:7px;padding:10px 20px;background:var(--blue-dark);color:#fff;border:none;border-radius:22px;font-size:13px;font-weight:700;cursor:pointer;transition:.2s;font-family:inherit;white-space:nowrap}
+.btn-add:hover{background:var(--blue-mid)}
+
+/* TABLE */
+.prod-table{background:var(--card);border:1.5px solid var(--border);border-radius:var(--radius);overflow:hidden}
+.prod-table-head{display:grid;grid-template-columns:60px 1fr 120px 100px 80px 110px;gap:12px;padding:13px 18px;background:var(--bg);border-bottom:1.5px solid var(--border);font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--text-muted)}
+.prod-row{display:grid;grid-template-columns:60px 1fr 120px 100px 80px 110px;gap:12px;padding:14px 18px;border-bottom:1px solid var(--border);align-items:center;transition:.15s}
+.prod-row:last-child{border:none}
+.prod-row:hover{background:#f9fbff}
+.prod-thumb{width:52px;height:52px;border-radius:9px;object-fit:contain;background:var(--bg);border:1px solid var(--border);padding:4px}
+.prod-name-cell h4{font-size:13px;font-weight:600;margin-bottom:2px}
+.prod-name-cell p{font-size:11.5px;color:var(--text-muted)}
+.prod-price{font-size:14px;font-weight:700;color:var(--blue-dark)}
+.cat-badge{display:inline-block;padding:3px 10px;border-radius:10px;font-size:11px;font-weight:600;background:var(--bg);border:1px solid var(--border)}
+.row-actions{display:flex;gap:7px}
+.btn-edit{padding:7px 14px;border-radius:18px;font-size:12px;font-weight:600;cursor:pointer;transition:.2s;border:1.5px solid var(--blue-dark);color:var(--blue-dark);background:#fff;font-family:inherit}
+.btn-edit:hover{background:var(--blue-dark);color:#fff}
+.btn-del{padding:7px 10px;border-radius:18px;font-size:12px;cursor:pointer;transition:.2s;border:1.5px solid var(--border);color:var(--text-muted);background:#fff;font-family:inherit}
+.btn-del:hover{border-color:var(--red);color:var(--red)}
+
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:500;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:.25s}
+.modal-overlay.open{opacity:1;pointer-events:all}
+.modal{background:#fff;border-radius:18px;width:100%;max-width:600px;max-height:90vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.25);transform:translateY(20px);transition:.25s}
+.modal-overlay.open .modal{transform:translateY(0)}
+.modal-header{padding:22px 26px 18px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border)}
+.modal-header h2{font-size:18px;font-weight:800;color:var(--blue-dark)}
+.modal-close{background:none;border:none;font-size:18px;color:var(--text-muted);cursor:pointer;padding:4px;border-radius:6px}
+.modal-body{padding:24px 26px 26px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.form-full{grid-column:1/-1}
+.form-group{display:flex;flex-direction:column;gap:6px}
+.form-group label{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--text-muted)}
+.form-group input,.form-group select,.form-group textarea{padding:11px 14px;border:1.5px solid var(--border);border-radius:10px;font-size:13.5px;font-family:inherit;outline:none;transition:.2s;background:#fff}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--blue)}
+.form-group textarea{resize:vertical;min-height:80px}
+.img-note{font-size:12px;color:var(--text-muted);margin-top:6px;line-height:1.6;background:#f0f4fa;padding:10px 14px;border-radius:8px}
+.modal-footer{display:flex;gap:10px;justify-content:flex-end;padding-top:20px;border-top:1px solid var(--border);margin-top:8px}
+.btn-cancel{padding:11px 22px;border:1.5px solid var(--border);border-radius:22px;font-size:13.5px;font-weight:600;cursor:pointer;background:#fff;transition:.2s;font-family:inherit}
+.btn-save{padding:11px 26px;background:var(--blue-dark);color:#fff;border:none;border-radius:22px;font-size:13.5px;font-weight:700;cursor:pointer;transition:.2s;font-family:inherit;display:flex;align-items:center;gap:8px}
+.btn-save:hover{background:var(--blue-mid)}
+.btn-save:disabled{opacity:.5;cursor:default}
+
+/* Toast */
+.toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--blue-dark);color:#fff;padding:12px 22px;border-radius:28px;font-size:13px;font-weight:600;z-index:999;transition:.35s;white-space:nowrap;box-shadow:0 6px 24px rgba(0,0,0,.2);opacity:0}
+.toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+.toast.success{background:var(--green)}
+.toast.error{background:var(--red)}
+
+.empty-state{text-align:center;padding:56px;color:var(--text-muted)}
+.empty-state i{font-size:44px;margin-bottom:14px;display:block;opacity:.4}
+.loading{text-align:center;padding:56px;color:var(--text-muted)}
+.loading i{font-size:28px;margin-bottom:10px;display:block;animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+@media(max-width:700px){
+  .stats-row{grid-template-columns:1fr 1fr}
+  .prod-table-head,.prod-row{grid-template-columns:50px 1fr 90px 80px}
+  .prod-table-head>*:nth-child(4),.prod-table-head>*:nth-child(5),
+  .prod-row>*:nth-child(4),.prod-row>*:nth-child(5){display:none}
+  .form-grid{grid-template-columns:1fr}
+  .admin-body{padding:20px 14px}
+}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="loginScreen">
+  <div class="login-box">
+    <div class="login-logo"><i class="fa fa-apple"></i></div>
+    <h2>Admin Panel</h2>
+    <p>Exclusive iPhones RSA — Site Manager</p>
+    <input type="password" class="login-field" id="loginPass" placeholder="Enter password" onkeydown="if(event.key==='Enter')doLogin()">
+    <button class="login-btn" onclick="doLogin()">Sign In</button>
+    <div class="login-error" id="loginError">❌ Wrong password. Try again.</div>
+  </div>
+</div>
+
+<!-- ADMIN APP -->
+<div id="adminApp">
+  <div class="admin-header">
+    <div class="admin-header-left">
+      <div class="admin-logo"><i class="fa fa-apple"></i></div>
+      <div><h1>Admin Panel</h1><p>Exclusive iPhones RSA</p></div>
+    </div>
+    <div class="admin-header-right">
+      <span style="display:flex;align-items:center;gap:6px;font-size:12px;color:rgba(255,255,255,.8)"><span class="live-dot"></span> Live</span>
+      <button class="header-pill" onclick="window.open('index.html','_blank')"><i class="fa fa-external-link-alt"></i> View Site</button>
+      <button class="header-pill" onclick="doLogout()"><i class="fa fa-sign-out-alt"></i> Logout</button>
+    </div>
+  </div>
+
+  <div class="admin-body">
+    <div class="stats-row">
+      <div class="stat-card"><h3>Total Products</h3><div class="num" id="statTotal">—</div><div class="sub">In your store</div></div>
+      <div class="stat-card"><h3>iPhones</h3><div class="num" id="statIphone">—</div><div class="sub">Listed</div></div>
+      <div class="stat-card"><h3>MacBooks</h3><div class="num" id="statMac">—</div><div class="sub">Listed</div></div>
+      <div class="stat-card"><h3>Other</h3><div class="num" id="statOther">—</div><div class="sub">Watches, iPads, AirPods</div></div>
+    </div>
+
+    <div class="tabs">
+      <button class="tab active" onclick="filterTab('All',this)">All Products</button>
+      <button class="tab" onclick="filterTab('iPhone',this)">iPhones</button>
+      <button class="tab" onclick="filterTab('MacBook',this)">MacBooks</button>
+      <button class="tab" onclick="filterTab('Watch',this)">Watches</button>
+      <button class="tab" onclick="filterTab('iPad',this)">iPads</button>
+      <button class="tab" onclick="filterTab('AirPods',this)">AirPods</button>
+    </div>
+
+    <div class="toolbar">
+      <div class="toolbar-search"><input type="text" placeholder="Search products..." id="adminSearch" oninput="renderTable()"><i class="fa fa-search"></i></div>
+      <button class="btn-add" onclick="openModal()"><i class="fa fa-plus"></i> Add New Product</button>
+    </div>
+
+    <div class="prod-table">
+      <div class="prod-table-head">
+        <div>Image</div><div>Product</div><div>Price</div><div>Category</div><div>Stock</div><div>Actions</div>
+      </div>
+      <div id="prodTableBody">
+        <div class="loading"><i class="fa fa-circle-notch"></i>Loading products...</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModalOutside(event)">
+  <div class="modal">
+    <div class="modal-header">
+      <h2 id="modalTitle">Add New Product</h2>
+      <button class="modal-close" onclick="closeModal()"><i class="fa fa-times"></i></button>
+    </div>
+    <div class="modal-body">
+      <div class="form-grid">
+
+        <div class="form-group form-full">
+          <label>Product Name</label>
+          <input type="text" id="fName" placeholder="e.g. Apple iPhone 16 Pro">
+        </div>
+
+        <div class="form-group">
+          <label>Category</label>
+          <select id="fCategory">
+            <option value="iPhone">iPhone</option>
+            <option value="MacBook">MacBook</option>
+            <option value="Watch">Watch</option>
+            <option value="iPad">iPad</option>
+            <option value="AirPods">AirPods</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Badge</label>
+          <input type="text" id="fBadge" placeholder="Brand New" value="Brand New">
+        </div>
+
+        <div class="form-group">
+          <label>Price (R)</label>
+          <input type="number" id="fPrice" placeholder="12500">
+        </div>
+
+        <div class="form-group">
+          <label>Old Price (R) — optional</label>
+          <input type="number" id="fOldPrice" placeholder="13500">
+        </div>
+
+        <div class="form-group">
+          <label>Stock Quantity</label>
+          <input type="number" id="fStock" placeholder="5">
+        </div>
+
+        <div class="form-group">
+          <label>Review Count</label>
+          <input type="number" id="fReviews" placeholder="99">
+        </div>
+
+        <div class="form-group form-full">
+          <label>Description</label>
+          <textarea id="fDesc" placeholder="Short product description..."></textarea>
+        </div>
+
+        <div class="form-group form-full">
+          <label>Image Filename</label>
+          <input type="text" id="fImg" placeholder="Apple iPhone 16.jpg">
+          <div class="img-note">
+            ⚠️ Type the exact filename of the image that is in your site folder.<br>
+            Example: <strong>Apple iPhone 16.jpg</strong> or <strong>Apple Watch Ultra.webp</strong>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+        <button class="btn-save" id="saveBtn" onclick="saveProduct()"><i class="fa fa-save"></i> <span id="saveBtnText">Save Product</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ============================================================
+//  Config
+// ============================================================
+const BIN_ID  = "6a2792bcda38895dfe9ddc93";
+const API_KEY = "$2a$10$fzrT1ZEHuBXP67bUevLiueTIEt.7.ZDgL6vb11rv9GFxUFUjPpiyW";
+const BIN_URL = `https://api.jsonbin.io/v3/b/${BIN_ID}`;
+const ADMIN_PASSWORD = "iphones2025";
+
+let allProducts = [];
+let activeTab = 'All';
+let editingIndex = null;
+
+// ============================================================
+//  JSONBin helpers
+// ============================================================
+async function loadBin() {
+  const res = await fetch(BIN_URL + "/latest", { headers: { "X-Access-Key": API_KEY } });
+  const data = await res.json();
+  return Array.isArray(data.record) ? data.record : [];
+}
+
+async function saveBin(data) {
+  await fetch(BIN_URL, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json", "X-Access-Key": API_KEY },
+    body: JSON.stringify(data)
+  });
+}
+
+// ============================================================
+//  Login
+// ============================================================
+function doLogin() {
+  const pass = document.getElementById('loginPass').value;
+  if (pass === ADMIN_PASSWORD) {
+    document.getElementById('loginScreen').style.display = 'none';
+    document.getElementById('adminApp').style.display = 'block';
+    loadProducts();
+  } else {
+    document.getElementById('loginError').style.display = 'block';
+    document.getElementById('loginPass').value = '';
+  }
+}
+function doLogout() {
+  document.getElementById('loginScreen').style.display = 'flex';
+  document.getElementById('adminApp').style.display = 'none';
+  document.getElementById('loginPass').value = '';
+}
+document.getElementById('loginPass').addEventListener('keydown', e => { if(e.key==='Enter') doLogin(); });
+
+// ============================================================
+//  Load
+// ============================================================
+async function loadProducts() {
+  try {
+    allProducts = await loadBin();
+    updateStats();
+    renderTable();
+  } catch(e) {
+    showToast('Error loading products', 'error');
+  }
+}
+
+function updateStats() {
+  document.getElementById('statTotal').textContent = allProducts.length;
+  document.getElementById('statIphone').textContent = allProducts.filter(p=>p.category==='iPhone').length;
+  document.getElementById('statMac').textContent = allProducts.filter(p=>p.category==='MacBook').length;
+  document.getElementById('statOther').textContent = allProducts.filter(p=>!['iPhone','MacBook'].includes(p.category)).length;
+}
+
+// ============================================================
+//  Table
+// ============================================================
+function renderTable() {
+  const search = document.getElementById('adminSearch').value.toLowerCase();
+  let filtered = allProducts;
+  if (activeTab !== 'All') filtered = filtered.filter(p => p.category === activeTab);
+  if (search) filtered = filtered.filter(p => p.name.toLowerCase().includes(search));
+
+  const body = document.getElementById('prodTableBody');
+  if (!filtered.length) { body.innerHTML = `<div class="empty-state"><i class="fa fa-box-open"></i>No products found</div>`; return; }
+
+  body.innerHTML = filtered.map(p => {
+    const realIndex = allProducts.indexOf(p);
+    return `<div class="prod-row">
+      <img class="prod-thumb" src="${p.img}" alt="${p.name}" onerror="this.style.opacity='.2'">
+      <div class="prod-name-cell"><h4>${p.name}</h4><p>${(p.desc||'').substring(0,50)}...</p></div>
+      <div class="prod-price">R${Number(p.price).toLocaleString()}</div>
+      <div><span class="cat-badge">${p.category}</span></div>
+      <div style="font-weight:600">${p.stock||0}</div>
+      <div class="row-actions">
+        <button class="btn-edit" onclick="openModal(${realIndex})"><i class="fa fa-pencil-alt"></i> Edit</button>
+        <button class="btn-del" onclick="deleteProduct(${realIndex},'${p.name.replace(/'/g,'')}')"><i class="fa fa-trash"></i></button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function filterTab(tab, el) {
+  activeTab = tab;
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  renderTable();
+}
+
+// ============================================================
+//  Modal
+// ============================================================
+function openModal(index) {
+  editingIndex = index !== undefined ? index : null;
+  document.getElementById('modalTitle').textContent = editingIndex !== null ? 'Edit Product' : 'Add New Product';
+  document.getElementById('saveBtnText').textContent = editingIndex !== null ? 'Save Changes' : 'Save Product';
+
+  if (editingIndex !== null) {
+    const p = allProducts[editingIndex];
+    document.getElementById('fName').value = p.name || '';
+    document.getElementById('fCategory').value = p.category || 'iPhone';
+    document.getElementById('fBadge').value = p.badge || 'Brand New';
+    document.getElementById('fPrice').value = p.price || '';
+    document.getElementById('fOldPrice').value = p.oldPrice || '';
+    document.getElementById('fStock').value = p.stock || '';
+    document.getElementById('fReviews').value = p.reviews || '';
+    document.getElementById('fDesc').value = p.desc || '';
+    document.getElementById('fImg').value = p.img || '';
+  } else {
+    document.getElementById('fName').value = '';
+    document.getElementById('fCategory').value = 'iPhone';
+    document.getElementById('fBadge').value = 'Brand New';
+    document.getElementById('fPrice').value = '';
+    document.getElementById('fOldPrice').value = '';
+    document.getElementById('fStock').value = '';
+    document.getElementById('fReviews').value = '';
+    document.getElementById('fDesc').value = '';
+    document.getElementById('fImg').value = '';
+  }
+  document.getElementById('modalOverlay').classList.add('open');
+}
+
+function closeModal() { document.getElementById('modalOverlay').classList.remove('open'); }
+function closeModalOutside(e) { if (e.target === document.getElementById('modalOverlay')) closeModal(); }
+
+// ============================================================
+//  Save
+// ============================================================
+async function saveProduct() {
+  const btn = document.getElementById('saveBtn');
+  const name = document.getElementById('fName').value.trim();
+  const price = parseFloat(document.getElementById('fPrice').value);
+  if (!name || isNaN(price)) { showToast('Please fill in Name and Price', 'error'); return; }
+
+  btn.disabled = true;
+  document.getElementById('saveBtnText').textContent = 'Saving...';
+
+  try {
+    const data = {
+      id: editingIndex !== null ? allProducts[editingIndex].id : String(Date.now()),
+      name,
+      category: document.getElementById('fCategory').value,
+      badge: document.getElementById('fBadge').value || 'Brand New',
+      price,
+      oldPrice: parseFloat(document.getElementById('fOldPrice').value) || null,
+      stock: parseInt(document.getElementById('fStock').value) || 0,
+      reviews: parseInt(document.getElementById('fReviews').value) || 99,
+      desc: document.getElementById('fDesc').value.trim(),
+      img: document.getElementById('fImg').value.trim(),
+      colors: editingIndex !== null ? (allProducts[editingIndex].colors || ['#1c1c1e']) : ['#1c1c1e'],
+    };
+
+    if (editingIndex !== null) {
+      allProducts[editingIndex] = data;
+    } else {
+      allProducts.push(data);
+    }
+
+    await saveBin(allProducts);
+    updateStats();
+    renderTable();
+    closeModal();
+    showToast(editingIndex !== null ? '✓ Product updated!' : '✓ Product added!', 'success');
+  } catch(e) {
+    showToast('Error saving: ' + e.message, 'error');
+  } finally {
+    btn.disabled = false;
+    document.getElementById('saveBtnText').textContent = editingIndex !== null ? 'Save Changes' : 'Save Product';
+  }
+}
+
+// ============================================================
+//  Delete
+// ============================================================
+async function deleteProduct(index, name) {
+  if (!confirm(`Delete "${name}"?\n\nThis cannot be undone.`)) return;
+  try {
+    allProducts.splice(index, 1);
+    await saveBin(allProducts);
+    updateStats();
+    renderTable();
+    showToast('Product deleted', 'success');
+  } catch(e) {
+    showToast('Error deleting', 'error');
+  }
+}
+
+// ============================================================
+//  Toast
+// ============================================================
+function showToast(msg, type) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast show' + (type ? ' ' + type : '');
+  setTimeout(() => t.className = 'toast', 3000);
+}
+</script>
+</body>
+</html>

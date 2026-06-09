@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exclusive iPhones RSA - Affordable Apple Devices</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div>📞 +27 83 868 7662</div>
+  <div class="topbar-center">Easter Specials Are Out 🐣 — All Brand New Devices &nbsp;|&nbsp; <a href="#">Shop Now</a></div>
+  <div class="topbar-right">
+    <select style="background:transparent;border:none;color:#fff;font-size:11.5px;cursor:pointer"><option>ZAR</option><option>USD</option></select>
+  </div>
+</div>
+
+<header>
+  <div class="header-inner">
+    <div class="hamburger" onclick="toggleMobileNav()"><span></span><span></span><span></span></div>
+    <a href="#" class="logo">
+      <div class="logo-icon"><i class="fa fa-apple"></i></div>
+      <div class="logo-text">Exclusive iPhones RSA<span>Affordable Devices</span></div>
+    </a>
+    <nav>
+      <a href="#section-iphone" class="nav-link"><i class="fa fa-mobile-alt" style="font-size:11px"></i> iPhones</a>
+      <a href="#section-macbooks" class="nav-link"><i class="fa fa-laptop" style="font-size:11px"></i> MacBooks</a>
+      <a href="#section-watches" class="nav-link"><i class="fa fa-clock" style="font-size:11px"></i> Watches</a>
+      <a href="#section-ipads" class="nav-link"><i class="fa fa-tablet-alt" style="font-size:11px"></i> iPads</a>
+      <a href="#pricelist" class="nav-link"><i class="fa fa-tag" style="font-size:11px"></i> Pricelist</a>
+      <a href="#section-about" class="nav-link"><i class="fa fa-info-circle" style="font-size:11px"></i> About</a>
+    </nav>
+    <div class="search-bar">
+      <input type="text" placeholder="Search Products" id="searchInput" onkeyup="handleSearch(event)">
+      <button><i class="fa fa-search"></i></button>
+    </div>
+    <div class="header-actions">
+      <button class="header-btn" onclick="toggleCart()">
+        <i class="fa fa-shopping-cart"></i> Cart
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="overlay" id="overlay" onclick="closeMobileNav()"></div>
+<div class="mobile-nav" id="mobileNav">
+  <button class="mobile-nav-close" onclick="closeMobileNav()"><i class="fa fa-times"></i></button>
+  <div class="logo" style="margin-bottom:22px">
+    <div class="logo-icon" style="width:38px;height:38px;font-size:15px"><i class="fa fa-apple"></i></div>
+    <div class="logo-text" style="font-size:13.5px">Exclusive iPhones RSA</div>
+  </div>
+  <a href="#section-iphone" onclick="closeMobileNav()">iPhones</a>
+  <a href="#section-macbooks" onclick="closeMobileNav()">MacBooks</a>
+  <a href="#section-watches" onclick="closeMobileNav()">Watches</a>
+  <a href="#section-ipads" onclick="closeMobileNav()">iPads</a>
+  <a href="#section-airpods" onclick="closeMobileNav()">AirPods</a>
+  <a href="#pricelist" onclick="closeMobileNav()">Pricelist</a>
+  <a href="#section-about" onclick="closeMobileNav()">About Us</a>
+  <a href="#section-location" onclick="closeMobileNav()">Find Us</a>
+  <a href="#section-faq" onclick="closeMobileNav()">FAQ</a>
+  <a href="#footer" onclick="closeMobileNav()">Contact</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <h1>Exclusive iPhones RSA</h1>
+      <p class="hero-subtitle">Affordable Apple Devices 🍏</p>
+      <p class="hero-body">For all your Apple products — iPhones, MacBooks, iPads, AirPods & Apple Watches. All Brand New Sealed. Order, Pay, Receive. Courier 1–2 days anywhere in SA.</p>
+      <button class="btn-primary" onclick="scrollToSection('section-iphone')">Shop Now &nbsp;<i class="fa fa-arrow-right"></i></button>
+    </div>
+    <div class="hero-img">
+      <img src="bgxx-removebg-preview.png" alt="Exclusive iPhones RSA">
+    </div>
+  </div>
+</section>
+
+<!-- CATEGORY QUICK NAV -->
+<section class="section" style="padding:28px 24px;border-bottom:1px solid var(--border)">
+  <div class="section-inner">
+    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+      <button class="cat-nav-btn" onclick="scrollToSection('section-iphone')"><i class="fa fa-mobile-alt"></i> iPhones</button>
+      <button class="cat-nav-btn" onclick="scrollToSection('section-macbooks')"><i class="fa fa-laptop"></i> MacBooks</button>
+      <button class="cat-nav-btn" onclick="scrollToSection('section-watches')"><i class="fa fa-clock"></i> Apple Watches</button>
+      <button class="cat-nav-btn" onclick="scrollToSection('section-ipads')"><i class="fa fa-tablet-alt"></i> iPads</button>
+      <button class="cat-nav-btn" onclick="scrollToSection('section-airpods')"><i class="fa fa-headphones"></i> AirPods</button>
+      <button class="cat-nav-btn" onclick="scrollToSection('pricelist')"><i class="fa fa-tag"></i> Pricelist</button>
+    </div>
+  </div>
+</section>
+
+<!-- SEARCH RESULTS -->
+<section class="section" id="section-all" style="display:none;background:var(--bg-light)">
+  <div class="section-inner">
+    <div class="cat-section-header">
+      <h2><i class="fa fa-search"></i> Search Results</h2>
+      <span class="view-all" onclick="clearSearch()">Clear Search</span>
+    </div>
+    <div class="products-grid" id="allGrid"></div>
+  </div>
+</section>
+
+<!-- iPHONES -->
+<section class="section" id="section-iphone">
+  <div class="section-inner">
+    <div class="cat-section-header">
+      <h2><i class="fa fa-mobile-alt"></i> iPhones</h2>
+      <span class="view-all" onclick="scrollToSection('pricelist')">View Pricelist</span>
+    </div>
+    <div class="products-grid" id="iphoneGrid"></div>
+  </div>
+</section>
+
+<!-- MacBOOKS -->
+<section class="section" id="section-macbooks" style="background:var(--bg-light)">
+  <div class="section-inner">
+    <div class="cat-section-header">
+      <h2><i class="fa fa-laptop"></i> MacBooks</h2>
+      <span class="view-all" onclick="scrollToSection('pricelist')">View Pricelist</span>
+    </div>
+    <div class="products-grid" id="macbookGrid"></div>
+  </div>
+</section>
+
+<!-- APPLE WATCHES -->
+<section class="section" id="section-watches">
+  <div class="section-inner">
+    <div class="cat-section-header">
+      <h2><i class="fa fa-clock"></i> Apple Watches</h2>
+      <span class="view-all" onclick="scrollToSection('pricelist')">View Pricelist</span>
+    </div>
+    <div class="products-grid" id="watchGrid"></div>
+  </div>
+</section>
+
+<!-- iPADS -->
+<section class="section" id="section-ipads" style="background:var(--bg-light)">
+  <div class="section-inner">
+    <div class="cat-section-header">
+      <h2><i class="fa fa-tablet-alt"></i> iPads</h2>
+      <span class="view-all" onclick="scrollToSection('pricelist')">View Pricelist</span>
+    </div>
+    <div class="products-grid" id="ipadGrid"></div>
+  </div>
+</section>
+
+<!-- AIRPODS -->
+<section class="section" id="section-airpods">
+  <div class="section-inner">
+    <div class="cat-section-header">
+      <h2><i class="fa fa-headphones"></i> AirPods</h2>
+      <span class="view-all" onclick="scrollToSection('pricelist')">View Pricelist</span>
+    </div>
+    <div class="products-grid" id="airpodsGrid"></div>
+  </div>
+</section>
+
+<!-- GUARANTEE BANNER -->
+<div style="padding:0 24px;max-width:1320px;margin:0 auto">
+  <div class="blue-banner">
+    <div class="blue-banner-text">
+      <h2>All Brand New Devices — Guaranteed</h2>
+      <p>Order with complete confidence. Every product is brand new, sealed in box. We ship via Postnet, PEP & The Courier Guy. Delivered in 1–2 days anywhere in South Africa.</p>
+      <button class="btn-outline" onclick="window.open('https://wa.me/27838687662','_blank')"><i class="fab fa-whatsapp"></i> Order on WhatsApp</button>
+    </div>
+    <div class="blue-banner-img">
+      <img src="Apple iPhone 16, 128GB,.jpg" alt="iPhone 16">
+    </div>
+  </div>
+</div>
+
+<!-- TODAY'S DEALS -->
+<section class="section" id="deals" style="background:var(--bg-light)">
+  <div class="section-inner">
+    <h2 class="section-title">Today's Best Deals</h2>
+    <div class="filter-pills" id="filterPills">
+      <div class="pill active" onclick="setFilter('All',this)">All</div>
+      <div class="pill" onclick="setFilter('iPhone',this)">iPhones</div>
+      <div class="pill" onclick="setFilter('MacBook',this)">MacBooks</div>
+      <div class="pill" onclick="setFilter('Watch',this)">Watches</div>
+      <div class="pill" onclick="setFilter('iPad',this)">iPads</div>
+      <div class="pill" onclick="setFilter('AirPods',this)">AirPods</div>
+    </div>
+    <div class="pag-wrap">
+      <div class="pag-grid" id="dealsGrid"></div>
+      <div class="pag-nav" id="dealsNav"></div>
+    </div>
+  </div>
+</section>
+
+<!-- SAVINGS -->
+<section class="section">
+  <div class="section-inner">
+    <h2 class="section-title">Save Big On Every Purchase</h2>
+    <div class="savings-grid">
+      <div class="savings-card" onclick="scrollToSection('section-iphone')">
+        <div class="savings-top"><div class="save-label">Save</div><div class="save-amount"><sup>R</sup>500</div><p>Explore Our iPhone Range</p></div>
+        <div class="savings-img"><img src="Apple iPhone 16.jpg" alt="iPhones"></div>
+      </div>
+      <div class="savings-card" onclick="scrollToSection('section-macbooks')">
+        <div class="savings-top"><div class="save-label">Save</div><div class="save-amount"><sup>R</sup>800</div><p>Explore Our MacBook Range</p></div>
+        <div class="savings-img"><img src="2023 Apple MacBook.jpg" alt="MacBooks"></div>
+      </div>
+      <div class="savings-card" onclick="scrollToSection('section-watches')">
+        <div class="savings-top"><div class="save-label">Save</div><div class="save-amount"><sup>R</sup>300</div><p>Explore Our Watch Range</p></div>
+        <div class="savings-img"><img src="Apple Watch Ultra.jpg" alt="Watches"></div>
+      </div>
+      <div class="savings-card" onclick="scrollToSection('section-ipads')">
+        <div class="savings-top"><div class="save-label">Save</div><div class="save-amount"><sup>R</sup>400</div><p>Explore Our iPad Range</p></div>
+        <div class="savings-img"><img src="Apple iPad Pro 2024.jpg" alt="iPads"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WEEKLY POPULAR -->
+<section class="section" style="background:var(--bg-light)">
+  <div class="section-inner">
+    <h2 class="section-title">This Week's Popular Picks</h2>
+    <div class="pag-wrap">
+      <div class="pag-grid" id="weeklyGrid"></div>
+      <div class="pag-nav" id="weeklyNav"></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHATSAPP BANNER -->
+<section class="section">
+  <div class="section-inner">
+    <div class="cashback-banner">
+      <div style="flex:1;min-width:0">
+        <h2>Everyday We Pushing 💪</h2>
+        <p>Order yours today. WhatsApp us on +27 83 868 7662 and get your brand new Apple device delivered within 1–2 days.</p>
+        <button class="btn-primary" style="margin-top:22px;border-color:var(--blue-dark);background:var(--blue-dark);border-radius:38px" onclick="window.open('https://wa.me/27838687662','_blank')"><i class="fab fa-whatsapp"></i> &nbsp;Chat on WhatsApp</button>
+      </div>
+      <div class="cashback-img">
+        <img src="Apple iPhone 15 Pro.jpg" alt="iPhone 15 Pro">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MOST SELLING -->
+<section class="section" style="background:var(--bg-light)">
+  <div class="section-inner">
+    <h2 class="section-title">Most Selling Products</h2>
+    <div class="pag-wrap">
+      <div class="pag-grid" id="mostSellingGrid"></div>
+      <div class="pag-nav" id="mostSellingNav"></div>
+    </div>
+  </div>
+</section>
+
+<!-- TRENDING -->
+<section class="section">
+  <div class="section-inner">
+    <h2 class="section-title">Trending Right Now</h2>
+    <div class="trending-grid">
+      <div class="trending-card" onclick="scrollToSection('section-iphone')">
+        <div class="trending-card-img"><img src="Apple iPhone 14, 128GB, Purple.jpg" alt="iPhones"></div>
+        <div class="trending-info"><h3>iPhone World</h3><p>iPhone 11 to iPhone 17 Pro Max — All Colours Available</p><button class="btn-dark">Shop Now</button></div>
+      </div>
+      <div class="trending-card" onclick="scrollToSection('section-macbooks')">
+        <div class="trending-card-img"><img src="Apple MacBook Pro 2024.jpg" alt="MacBooks"></div>
+        <div class="trending-info"><h3>MacBook World</h3><p>MacBook Air & Pro — M1, M2, M3 & M4 Chips</p><button class="btn-dark">Shop Now</button></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BEST SELLING COLLECTIONS -->
+<section class="section" style="background:var(--bg-light)">
+  <div class="section-inner">
+    <h2 class="section-title">Best Selling Collections</h2>
+    <div class="stores-grid">
+      <div class="store-card" onclick="scrollToSection('section-iphone')">
+        <div class="store-img"><img src="Apple iPhone 15 Plus.jpg" alt="iPhones"></div>
+        <div class="store-info"><h4>iPhones</h4><p>iPhone 8 through iPhone 17 Pro Max</p><div class="store-delivery"><i class="fa fa-truck"></i> Delivery 1–2 days</div></div>
+      </div>
+      <div class="store-card" onclick="scrollToSection('section-macbooks')">
+        <div class="store-img"><img src="2026 MacBook Neo 13-inch.jpg" alt="MacBooks"></div>
+        <div class="store-info"><h4>MacBooks</h4><p>Air & Pro — All M-series chips</p><div class="store-delivery"><i class="fa fa-truck"></i> Delivery 1–2 days</div></div>
+      </div>
+      <div class="store-card" onclick="scrollToSection('section-watches')">
+        <div class="store-img"><img src="Apple Watch Series 8.jpg" alt="Watches"></div>
+        <div class="store-info"><h4>Apple Watches</h4><p>Series 2 through Ultra</p><div class="store-delivery"><i class="fa fa-truck"></i> Delivery 1–2 days</div></div>
+      </div>
+      <div class="store-card" onclick="scrollToSection('section-ipads')">
+        <div class="store-img"><img src="Apple iPad Pro 2024.jpg" alt="iPads"></div>
+        <div class="store-info"><h4>iPads</h4><p>iPad Air, Pro, Mini — All Models</p><div class="store-delivery"><i class="fa fa-truck"></i> Delivery 1–2 days</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY SHOP WITH US -->
+<section class="section">
+  <div class="section-inner">
+    <h2 class="section-title">Why Shop With Us?</h2>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-top"><h3>15,600+ Happy Customers</h3><p>Trusted by thousands across South Africa. Check @exclusiveiphonesrsa on Instagram for hundreds of verified delivery photos.</p></div>
+        <div class="service-img"><img src="Apple iPhone 13.jpg" alt="Customers"></div>
+      </div>
+      <div class="service-card">
+        <div class="service-top"><h3>Cash on Delivery Available</h3><p>We offer cash on delivery in select areas. WhatsApp us to confirm your location and we'll arrange everything for you.</p></div>
+        <div class="service-img"><img src="Apple iPhone 16 Plus.jpg" alt="COD"></div>
+      </div>
+      <div class="service-card">
+        <div class="service-top"><h3>Nationwide Courier</h3><p>Fast, trackable delivery via Postnet, PEP & The Courier Guy. 1–2 business days anywhere in South Africa.</p></div>
+        <div class="service-img"><img src="Apple iPhone 15, 128GB.jpg" alt="Courier"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICELIST -->
+<section class="section" id="pricelist" style="background:var(--bg-light)">
+  <div class="section-inner">
+    <h2 class="section-title">📋 Full Pricelist — All Brand New Devices</h2>
+    <div class="pricelist-grid">
+      <div class="pricelist-card">
+        <h3><i class="fa fa-mobile-alt"></i> iPhone 8 / X / XR / XS</h3>
+        <div class="pricelist-item"><span class="pi-name">iPhone 8 (64GB)</span><span class="pi-price">R1,600</span></div>
+        <div class="pricelist-item"><span class="pi-name">iPhone 8 (128GB)</span><span class="pi-price">R1,750</span></div>
+        <div class="pricelist-item"><span class="pi-name">iPhone 8 Plus</span><span class="pi-price">R2,000</span></div>
+        <div class="pricelist-item"><span class="pi-name">iPhone X</span><span class="pi-price">R2,200</span></div>
+        <div class="pricelist-item"><span class="pi-name">iPhone XR</span><span class="pi-price">R2,350</span></div>
+        <div class="pricelist-item"><span class="pi-name">iPhone XS</span><span class="pi-price">R2,400</span></div>
+        <div class="pricelist-item"><span class="pi-name">iPhone XS Max</span><span class="pi-price">R2,800</span></div>
+      </div>
+      <div class="pricelist-card">
+        <h3><i class="fa fa-mobile-alt"></i> iPhone 11 / 12 / 13 / 14</h3>
+        <div class="pricelist-item"><span class="pi-name">iPhone 11</span><span class="pi-price">R3,200</span></div>
+        <div class="pricelist-item"><span class="pi-name">iPhone 11 Pro</span><span class="pi-price">R3,700</span></div>
+        <div class="pricelist-item"><span class="pi-name">iPhone 11 Pro Max</span><span class="pi-price">R4,000</span></div>
+        <div class="pricelist-item"><span class="pi-name">iPhone 12</span><span class="pi-price">R4,000</span></div>
+        <div class="pricelist-item"><span class="pi-name">iPhone 12 Mini</span><span class="pi-price">R3,800</span></div>
+        <div class="pricelist-item"><span class="pi-name">iPhone 12 Pro</span><span class="pi-price">R4,500</span></div>
+        <div class="pricelist-item"><span class="pi-name">iPhone 12 Pro Max</span><span class="pi-price">R5,200</span></div>
+        <div class="pricelist-item"><span class="pi-name">iPhone 13</span><span class="pi-price">R5,500</span></div>
+        <div class="pricelist-item"><span class="pi-name">iPhone 13 Pro</span><span class="pi-price">R6,500</span></div>
+        <div class="pricelist-item"><span class="pi-name">iPhone 13 Pro Max</span><span class="pi-price">R7,000</span></div>
+        <div class="pricelist-item"><span class="pi-name">iPhone 14</span><span class="pi-price">R6,000</span></div>
+        <div class="pricelist-item"><span class="pi-name">iPhone 14 Plus</span><span class="pi-price">R6,800</span></div>
+        <div class="pricelist-item"><span class="pi-name">iPhone 14 Pro</span><span class="pi-price">R7,500</span></div>
+        <div class="pricelist-item"><span class="pi-name">iPhone 14 Pro Max</span><span class="pi-price">R9,000</span></div>
+      </div>
+      <div class="pricelist-card">
+        <h3><i class="fa fa-mobile-alt"></i> iPhone 15 / 16 / 17</h3>
+        <div class="pricelist-item"><span class="pi-name">iPhone 15</span><span class="pi-price">R7,000</span></div>
+        <div class="pricelist-item"><span class="pi-name">iPhone 15 Plus</span><span class="pi-price">R7,800</span></div>
+        <div class="pricelist-item"><span class="pi-name">iPhone 15 Pro</span><span class="pi-price">R9,500</span></div>
+        <div class="pricelist-item"><span class="pi-name">iPhone 15 Pro Max</span><span class="pi-price">R11,500</span></div>
+        <div class="pricelist-item"><span class="pi-name">iPhone 16</span><span class="pi-price">R9,500</span></div>
+        <div class="pricelist-item"><span class="pi-name">iPhone 16 Plus</span><span class="pi-price">R11,500</span></div>
+        <div class="pricelist-item"><span class="pi-name">iPhone 16 Pro</span><span class="pi-price">R12,500</span></div>
+        <div class="pricelist-item"><span class="pi-name">iPhone 16 Pro Max</span><span class="pi-price">R15,000</span></div>
+        <div class="pricelist-item"><span class="pi-name">iPhone 17</span><span class="pi-price">R14,000</span></div>
+        <div class="pricelist-item"><span class="pi-name">iPhone 17 Air</span><span class="pi-price">R15,000</span></div>
+        <div class="pricelist-item"><span class="pi-name">iPhone 17 Pro</span><span class="pi-price">R17,000</span></div>
+        <div class="pricelist-item"><span class="pi-name">iPhone 17 Pro Max</span><span class="pi-price">R19,999</span></div>
+      </div>
+    </div>
+    <div class="pricelist-grid">
+      <div class="pricelist-card">
+        <h3><i class="fa fa-headphones"></i> AirPods</h3>
+        <div class="pricelist-item"><span class="pi-name">AirPods Max</span><span class="pi-price">R2,500</span></div>
+        <div class="pricelist-item"><span class="pi-name">AirPods Pro 2nd Gen</span><span class="pi-price">R900</span></div>
+        <div class="pricelist-item"><span class="pi-name">AirPods 3rd Gen</span><span class="pi-price">R1,100</span></div>
+        <div class="pricelist-item"><span class="pi-name">AirPods 4th Gen</span><span class="pi-price">R1,500</span></div>
+      </div>
+      <div class="pricelist-card">
+        <h3><i class="fa fa-laptop"></i> MacBooks</h3>
+        <div class="pricelist-item"><span class="pi-name">MacBook Air M1</span><span class="pi-price">R6,000</span></div>
+        <div class="pricelist-item"><span class="pi-name">MacBook Pro M1</span><span class="pi-price">R8,000</span></div>
+        <div class="pricelist-item"><span class="pi-name">MacBook Air M2</span><span class="pi-price">R8,500</span></div>
+        <div class="pricelist-item"><span class="pi-name">MacBook Pro M3</span><span class="pi-price">R13,500</span></div>
+        <div class="pricelist-item"><span class="pi-name">MacBook Air M4</span><span class="pi-price">R14,000</span></div>
+      </div>
+      <div class="pricelist-card">
+        <h3><i class="fa fa-clock"></i> Apple Watches</h3>
+        <div class="pricelist-item"><span class="pi-name">Apple Watch S2</span><span class="pi-price">R1,000</span></div>
+        <div class="pricelist-item"><span class="pi-name">Apple Watch S6</span><span class="pi-price">R2,500</span></div>
+        <div class="pricelist-item"><span class="pi-name">Apple Watch S7</span><span class="pi-price">R3,000</span></div>
+        <div class="pricelist-item"><span class="pi-name">Apple Watch S8</span><span class="pi-price">R4,000</span></div>
+        <div class="pricelist-item"><span class="pi-name">Apple Watch Ultra</span><span class="pi-price">R6,500</span></div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:26px">
+      <button class="btn-checkout" style="width:auto;padding:13px 38px;display:inline-flex;align-items:center;gap:10px;border-radius:28px" onclick="window.open('https://wa.me/27838687662?text=Hi! I want to order from the pricelist.','_blank')">
+        <i class="fab fa-whatsapp"></i> Order on WhatsApp
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT US -->
+<section class="about-section" id="section-about">
+  <div class="about-inner">
+    <div class="about-grid">
+      <div>
+        <div class="about-label"><i class="fa fa-info-circle"></i> About Us</div>
+        <h2 class="about-heading">South Africa's Most Trusted <span>Apple Reseller</span></h2>
+        <p class="about-lead">Exclusive iPhones RSA was built on one simple promise — make premium Apple products accessible to every South African. Based in Sandton, Johannesburg, we've been delivering brand new, sealed Apple devices to customers across the country since day one.</p>
+        <p style="font-size:13.5px;color:var(--text-light);line-height:1.8;margin-bottom:28px">We are not a grey-market dealer. Every single device we sell is <strong>100% brand new, sealed in original packaging</strong> with manufacturer warranty. No refurbished, no second-hand, no tricks.</p>
+        <div class="about-stats">
+          <div class="about-stat"><div class="about-stat-num">15<sup>K+</sup></div><div class="about-stat-label">Happy Customers Nationwide</div></div>
+          <div class="about-stat"><div class="about-stat-num">5<sup>★</sup></div><div class="about-stat-label">Average Customer Rating</div></div>
+          <div class="about-stat"><div class="about-stat-num">24<sup>/7</sup></div><div class="about-stat-label">WhatsApp Support Available</div></div>
+          <div class="about-stat"><div class="about-stat-num">1<sup>–2</sup></div><div class="about-stat-label">Day Nationwide Delivery</div></div>
+        </div>
+        <button class="btn-primary" style="background:var(--blue-dark);border-color:var(--blue-dark);border-radius:30px;margin-top:4px" onclick="window.open('https://wa.me/27838687662','_blank')"><i class="fab fa-whatsapp"></i> &nbsp;Chat With Us</button>
+      </div>
+      <div class="about-pillars">
+        <div class="about-pillar"><div class="about-pillar-icon" style="background:#dbeafe"><i class="fa fa-box-open" style="color:#0a2a5e"></i></div><div><h4>100% Brand New & Sealed</h4><p>Every product ships in its original, factory-sealed box with full manufacturer warranty.</p></div></div>
+        <div class="about-pillar"><div class="about-pillar-icon" style="background:#dcfce7"><i class="fa fa-shield-alt" style="color:#166534"></i></div><div><h4>Verified & Trusted Since Day One</h4><p>Over 15,000 satisfied customers. See delivery photos on Instagram @exclusiveiphonesrsa.</p></div></div>
+        <div class="about-pillar"><div class="about-pillar-icon" style="background:#fef9c3"><i class="fa fa-truck" style="color:#854d0e"></i></div><div><h4>Nationwide Delivery in 1–2 Days</h4><p>Via Postnet, PEP & The Courier Guy — fast, reliable and trackable across South Africa.</p></div></div>
+        <div class="about-pillar"><div class="about-pillar-icon" style="background:#ffe4e6"><i class="fab fa-whatsapp" style="color:#c0392b"></i></div><div><h4>Real People, Real Support</h4><p>Available on WhatsApp 24/7. No bots — just real, fast help from our team.</p></div></div>
+        <div class="about-pillar"><div class="about-pillar-icon" style="background:#f3e8ff"><i class="fa fa-tag" style="color:#7c3aed"></i></div><div><h4>Unbeatable Prices in South Africa</h4><p>We cut out middlemen to bring you the lowest Apple prices in SA without compromising quality.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section class="location-section" id="section-location">
+  <div class="location-inner">
+    <div class="location-header">
+      <h2>Find Us in Johannesburg</h2>
+      <p>Based in Sandton, Gauteng. We serve customers nationwide through our courier partners.</p>
+    </div>
+    <div class="location-grid">
+      <div class="location-map-wrap">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d57367.56816906566!2d28.024695!3d-26.107567!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e9573e1e7a01f39%3A0x4a01e27afe27aa0a!2sSandton%2C%20Johannesburg!5e0!3m2!1sen!2sza!4v1718000000000!5m2!1sen!2sza" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+      <div class="location-details">
+        <div class="location-card"><div class="location-card-icon"><i class="fa fa-map-marker-alt"></i></div><div><h4>Our Location</h4><p>Sandton, Johannesburg<br>Gauteng, South Africa</p></div></div>
+        <div class="location-card"><div class="location-card-icon"><i class="fa fa-clock"></i></div><div><h4>Business Hours</h4><p>Open 24 Hours, 7 Days a Week<br>WhatsApp Support Available Always</p></div></div>
+        <div class="location-card"><div class="location-card-icon"><i class="fab fa-whatsapp"></i></div><div><h4>WhatsApp</h4><a href="https://wa.me/27838687662" target="_blank">+27 83 868 7662</a><p style="margin-top:2px">Fastest way to order or ask questions</p></div></div>
+        <div class="location-card"><div class="location-card-icon"><i class="fab fa-instagram"></i></div><div><h4>Instagram</h4><a href="https://instagram.com/exclusiveiphonesrsa" target="_blank">@exclusiveiphonesrsa</a><p style="margin-top:2px">Proof of deliveries & reviews</p></div></div>
+        <div class="location-card"><div class="location-card-icon"><i class="fa fa-truck"></i></div><div><h4>We Deliver Nationwide</h4><p>Via Postnet, PEP & The Courier Guy<br>1–2 Business Days across all provinces</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section" id="section-faq">
+  <div class="faq-inner">
+    <div class="faq-header"><h2>Frequently Asked Questions</h2><p>Everything you need to know before placing your order.</p></div>
+    <div class="faq-list">
+      <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)"><div class="faq-question-text">Are the products genuinely brand new and not refurbished?</div><div class="faq-icon"><i class="fa fa-plus"></i></div></div><div class="faq-answer"><div class="faq-answer-inner">Absolutely. Every single device we sell is 100% brand new and factory sealed in its original box — straight from the supplier to you. We do not sell refurbished, repaired, or second-hand devices under any circumstances.</div></div></div>
+      <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)"><div class="faq-question-text">How do I place an order?</div><div class="faq-icon"><i class="fa fa-plus"></i></div></div><div class="faq-answer"><div class="faq-answer-inner">Add a product to your cart and checkout via WhatsApp, or contact us directly on +27 83 868 7662. Tell us which device you want, confirm your delivery address, and make payment via EFT or Cash on Delivery where available.</div></div></div>
+      <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)"><div class="faq-question-text">How long does delivery take?</div><div class="faq-icon"><i class="fa fa-plus"></i></div></div><div class="faq-answer"><div class="faq-answer-inner">We offer nationwide delivery via Postnet, PEP, and The Courier Guy. Standard delivery takes 1–2 business days to most areas in South Africa.</div></div></div>
+      <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)"><div class="faq-question-text">What payment methods do you accept?</div><div class="faq-icon"><i class="fa fa-plus"></i></div></div><div class="faq-answer"><div class="faq-answer-inner">We accept EFT, direct bank deposits, Visa and Mastercard, and Cash on Delivery in select areas.</div></div></div>
+      <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)"><div class="faq-question-text">Is Cash on Delivery available in my area?</div><div class="faq-icon"><i class="fa fa-plus"></i></div></div><div class="faq-answer"><div class="faq-answer-inner">Cash on Delivery is available in select areas primarily across Gauteng. WhatsApp us with your location to confirm before placing your order.</div></div></div>
+      <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)"><div class="faq-question-text">Can I return or exchange a product?</div><div class="faq-icon"><i class="fa fa-plus"></i></div></div><div class="faq-answer"><div class="faq-answer-inner">If your device arrives damaged or defective, we will arrange a replacement or full refund. Report within 48 hours of delivery via WhatsApp with photos or a video of the issue.</div></div></div>
+      <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)"><div class="faq-question-text">How do I know this business is legitimate?</div><div class="faq-icon"><i class="fa fa-plus"></i></div></div><div class="faq-answer"><div class="faq-answer-inner">We've served over 15,000 customers across South Africa. Visit @exclusiveiphonesrsa on Instagram to see hundreds of real delivery photos and verified customer reviews.</div></div></div>
+    </div>
+    <div class="faq-cta">
+      <div class="faq-cta-text"><h4>Still have a question?</h4><p>Our team is available 24/7 on WhatsApp. We respond fast — usually within minutes.</p></div>
+      <button class="faq-cta-btn" onclick="window.open('https://wa.me/27838687662?text=Hi! I have a question about ordering.','_blank')"><i class="fab fa-whatsapp"></i> Chat With Us</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="logo"><div class="logo-icon"><i class="fa fa-apple"></i></div><div class="logo-text">Exclusive iPhones RSA<span>Affordable Devices</span></div></div>
+      <p>Your trusted Apple device reseller in South Africa. All Brand New. Sandton, Johannesburg. Open 24 hours.</p>
+      <div class="footer-payments"><h5>Accepted Payments</h5><div class="payment-icons"><span class="pay-badge">EFT</span><span class="pay-badge">Visa</span><span class="pay-badge">MC</span><span class="pay-badge">Cash</span><span class="pay-badge">COD</span></div></div>
+    </div>
+    <div class="footer-col"><h4>Products</h4><ul><li><a href="#section-iphone">iPhones</a></li><li><a href="#section-macbooks">MacBooks</a></li><li><a href="#section-watches">Apple Watches</a></li><li><a href="#section-ipads">iPads</a></li><li><a href="#section-airpods">AirPods</a></li><li><a href="#pricelist">Full Pricelist</a></li></ul></div>
+    <div class="footer-col"><h4>Company</h4><ul><li><a href="#section-about">About Us</a></li><li><a href="https://instagram.com/exclusiveiphonesrsa" target="_blank">Instagram</a></li><li><a href="#section-location">Find Us</a></li><li><a href="#section-faq">FAQ</a></li></ul></div>
+    <div class="footer-col"><h4>Services</h4><ul><li><a href="#section-faq">Shipping & Delivery</a></li><li><a href="#section-faq">Returns Policy</a></li><li><a href="#section-faq">Warranty Info</a></li><li><a href="#deals">Today's Deals</a></li></ul></div>
+    <div class="footer-col"><h4>Contact</h4><ul><li><a href="https://wa.me/27838687662" target="_blank">+27 83 868 7662</a></li><li><a href="https://instagram.com/exclusiveiphonesrsa" target="_blank">@exclusiveiphonesrsa</a></li><li><a href="#section-location">Sandton, Johannesburg</a></li><li><a href="https://wa.me/27838687662" target="_blank">Open 24 Hours</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <div style="display:flex;gap:18px;flex-wrap:wrap"><a href="#" style="font-size:11.5px;color:var(--text-muted)">Terms of Service</a><a href="#" style="font-size:11.5px;color:var(--text-muted)">Privacy Policy</a><a href="https://instagram.com/exclusiveiphonesrsa" target="_blank" style="font-size:11.5px;color:var(--text-muted)">Instagram</a></div>
+    <div class="footer-copy">© 2025 Exclusive iPhones RSA. All Rights Reserved.</div>
+  </div>
+</footer>
+
+<!-- CART DRAWER -->
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-header"><h3><i class="fa fa-shopping-cart" style="margin-right:7px"></i> Your Cart</h3><button class="cart-close" onclick="toggleCart()"><i class="fa fa-times"></i></button></div>
+  <div class="cart-items" id="cartItems"><div class="cart-empty" id="cartEmpty"><i class="fa fa-shopping-cart"></i><p style="font-size:14px;font-weight:600;margin-bottom:5px">Your cart is empty</p><p style="font-size:12.5px">Add some products to get started</p></div></div>
+  <div class="cart-footer" id="cartFooter" style="display:none"><div class="cart-total"><span>Total</span><span id="cartTotal">R0</span></div><button class="btn-checkout" onclick="checkout()">Order via WhatsApp</button></div>
+</div>
+<div class="overlay" id="cartOverlay" onclick="toggleCart()"></div>
+
+<!-- PRODUCT DETAIL PAGE -->
+<div class="pdp-page" id="pdpPage">
+  <div class="pdp-topbar"><button class="pdp-back" onclick="closePDP()"><i class="fa fa-arrow-left"></i> Back</button><div class="pdp-breadcrumb">Home › <span id="pdpBreadCat"></span> › <span id="pdpBreadName"></span></div></div>
+  <div class="pdp-inner">
+    <div class="pdp-main"><div><div class="pdp-main-img" id="pdpMainImgWrap"></div><div class="pdp-thumbs" id="pdpThumbs"></div></div><div id="pdpInfo"></div></div>
+    <div id="pdpRelated"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+<a class="wa-float" href="https://wa.me/27838687662" target="_blank"><i class="fab fa-whatsapp"></i></a>
+
+<script src="script.js"></script>
+</body>
+</html>
