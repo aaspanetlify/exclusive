@@ -11,7 +11,6 @@
 :root{--blue:#0a2a5e;--blue-dark:#061a3d;--blue-mid:#1a4a8a;--red:#e74c3c;--green:#27ae60;--text:#1a1a1a;--text-muted:#888;--bg:#f0f4fa;--card:#fff;--border:#e0e8f0;--radius:12px;}
 body{font-family:'DM Sans',sans-serif;font-size:14px;color:var(--text);background:var(--bg);min-height:100vh}
 
-/* LOGIN */
 #loginScreen{position:fixed;inset:0;background:linear-gradient(140deg,#020d1f,#061a3d,#0a3a7a);display:flex;align-items:center;justify-content:center;z-index:1000}
 .login-box{background:#fff;border-radius:20px;padding:48px 40px;width:360px;max-width:90vw;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.4)}
 .login-logo{width:60px;height:60px;background:linear-gradient(135deg,#0a2a5e,#1a4a8a);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:24px;margin:0 auto 20px}
@@ -19,11 +18,9 @@ body{font-family:'DM Sans',sans-serif;font-size:14px;color:var(--text);backgroun
 .login-box p{font-size:13px;color:var(--text-muted);margin-bottom:28px}
 .login-field{width:100%;padding:12px 16px;border:1.5px solid var(--border);border-radius:10px;font-size:14px;font-family:inherit;outline:none;margin-bottom:14px;transition:.2s}
 .login-field:focus{border-color:var(--blue)}
-.login-btn{width:100%;padding:13px;background:var(--blue-dark);color:#fff;border:none;border-radius:28px;font-size:14px;font-weight:700;cursor:pointer;transition:.2s}
-.login-btn:hover{background:var(--blue-mid)}
+.login-btn{width:100%;padding:13px;background:var(--blue-dark);color:#fff;border:none;border-radius:28px;font-size:14px;font-weight:700;cursor:pointer}
 .login-error{color:var(--red);font-size:12.5px;margin-top:10px;display:none}
 
-/* LAYOUT */
 #adminApp{display:none}
 .admin-header{background:var(--blue-dark);color:#fff;padding:0 28px;height:64px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
 .admin-header-left{display:flex;align-items:center;gap:14px}
@@ -31,50 +28,60 @@ body{font-family:'DM Sans',sans-serif;font-size:14px;color:var(--text);backgroun
 .admin-header h1{font-size:16px;font-weight:700}
 .admin-header p{font-size:11px;opacity:.7;margin-top:1px}
 .admin-header-right{display:flex;align-items:center;gap:12px}
-.header-pill{display:flex;align-items:center;gap:6px;font-size:12px;padding:6px 14px;border-radius:20px;background:rgba(255,255,255,.12);cursor:pointer;transition:.2s;border:none;color:#fff;font-family:inherit}
+.header-pill{display:flex;align-items:center;gap:6px;font-size:12px;padding:6px 14px;border-radius:20px;background:rgba(255,255,255,.12);cursor:pointer;border:none;color:#fff;font-family:inherit}
 .header-pill:hover{background:rgba(255,255,255,.22)}
 .live-dot{width:8px;height:8px;border-radius:50%;background:#2ecc71;animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
 
 .admin-body{max-width:1200px;margin:0 auto;padding:32px 24px}
 
-/* STATS */
 .stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:32px}
 .stat-card{background:var(--card);border:1.5px solid var(--border);border-radius:var(--radius);padding:20px 22px}
 .stat-card h3{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--text-muted);margin-bottom:8px}
 .stat-card .num{font-size:28px;font-weight:800;color:var(--blue-dark)}
 .stat-card .sub{font-size:12px;color:var(--text-muted);margin-top:3px}
 
-/* TABS */
 .tabs{display:flex;gap:6px;margin-bottom:24px;flex-wrap:wrap}
-.tab{padding:9px 20px;border-radius:22px;font-size:13px;font-weight:600;cursor:pointer;transition:.2s;border:1.5px solid var(--border);background:#fff;color:var(--text)}
+.tab{padding:9px 20px;border-radius:22px;font-size:13px;font-weight:600;cursor:pointer;border:1.5px solid var(--border);background:#fff;color:var(--text);transition:.2s}
 .tab.active{background:var(--blue-dark);color:#fff;border-color:var(--blue-dark)}
 
-/* TOOLBAR */
 .toolbar{display:flex;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap}
 .toolbar-search{flex:1;min-width:200px;position:relative}
 .toolbar-search input{width:100%;padding:10px 38px 10px 16px;border:1.5px solid var(--border);border-radius:22px;font-size:13px;font-family:inherit;outline:none;background:#fff;transition:.2s}
 .toolbar-search input:focus{border-color:var(--blue)}
 .toolbar-search i{position:absolute;right:13px;top:50%;transform:translateY(-50%);color:var(--text-muted);font-size:13px}
-.btn-add{display:flex;align-items:center;gap:7px;padding:10px 20px;background:var(--blue-dark);color:#fff;border:none;border-radius:22px;font-size:13px;font-weight:700;cursor:pointer;transition:.2s;font-family:inherit;white-space:nowrap}
+.btn-add{display:flex;align-items:center;gap:7px;padding:10px 20px;background:var(--blue-dark);color:#fff;border:none;border-radius:22px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;white-space:nowrap}
 .btn-add:hover{background:var(--blue-mid)}
 
-/* TABLE */
 .prod-table{background:var(--card);border:1.5px solid var(--border);border-radius:var(--radius);overflow:hidden}
-.prod-table-head{display:grid;grid-template-columns:60px 1fr 120px 100px 80px 110px;gap:12px;padding:13px 18px;background:var(--bg);border-bottom:1.5px solid var(--border);font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--text-muted)}
-.prod-row{display:grid;grid-template-columns:60px 1fr 120px 100px 80px 110px;gap:12px;padding:14px 18px;border-bottom:1px solid var(--border);align-items:center;transition:.15s}
+.prod-table-head{display:grid;grid-template-columns:70px 1fr 120px 100px 80px 130px;gap:12px;padding:13px 18px;background:var(--bg);border-bottom:1.5px solid var(--border);font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--text-muted)}
+.prod-row{display:grid;grid-template-columns:70px 1fr 120px 100px 80px 130px;gap:12px;padding:14px 18px;border-bottom:1px solid var(--border);align-items:center;transition:.15s}
 .prod-row:last-child{border:none}
 .prod-row:hover{background:#f9fbff}
-.prod-thumb{width:52px;height:52px;border-radius:9px;object-fit:contain;background:var(--bg);border:1px solid var(--border);padding:4px}
+.prod-thumb{width:58px;height:58px;border-radius:9px;object-fit:contain;background:var(--bg);border:1px solid var(--border);padding:4px}
 .prod-name-cell h4{font-size:13px;font-weight:600;margin-bottom:2px}
 .prod-name-cell p{font-size:11.5px;color:var(--text-muted)}
 .prod-price{font-size:14px;font-weight:700;color:var(--blue-dark)}
 .cat-badge{display:inline-block;padding:3px 10px;border-radius:10px;font-size:11px;font-weight:600;background:var(--bg);border:1px solid var(--border)}
 .row-actions{display:flex;gap:7px}
-.btn-edit{padding:7px 14px;border-radius:18px;font-size:12px;font-weight:600;cursor:pointer;transition:.2s;border:1.5px solid var(--blue-dark);color:var(--blue-dark);background:#fff;font-family:inherit}
+.btn-edit{padding:7px 14px;border-radius:18px;font-size:12px;font-weight:600;cursor:pointer;border:1.5px solid var(--blue-dark);color:var(--blue-dark);background:#fff;font-family:inherit;transition:.2s}
 .btn-edit:hover{background:var(--blue-dark);color:#fff}
-.btn-del{padding:7px 10px;border-radius:18px;font-size:12px;cursor:pointer;transition:.2s;border:1.5px solid var(--border);color:var(--text-muted);background:#fff;font-family:inherit}
+.btn-del{padding:7px 10px;border-radius:18px;font-size:12px;cursor:pointer;border:1.5px solid var(--border);color:var(--text-muted);background:#fff;font-family:inherit;transition:.2s}
 .btn-del:hover{border-color:var(--red);color:var(--red)}
+
+/* PRICELIST TAB */
+.pricelist-editor{background:var(--card);border:1.5px solid var(--border);border-radius:var(--radius);overflow:hidden}
+.pl-section{border-bottom:1px solid var(--border)}
+.pl-section:last-child{border:none}
+.pl-section-head{padding:16px 20px;background:var(--bg);font-size:13.5px;font-weight:700;color:var(--blue-dark);display:flex;align-items:center;gap:8px}
+.pl-row{display:flex;align-items:center;gap:12px;padding:10px 20px;border-top:1px solid var(--border)}
+.pl-row:first-of-type{border-top:none}
+.pl-name{flex:1;font-size:13px;color:var(--text)}
+.pl-price-input{width:120px;padding:8px 12px;border:1.5px solid var(--border);border-radius:8px;font-size:13px;font-family:inherit;outline:none;font-weight:700;color:var(--blue-dark);transition:.2s}
+.pl-price-input:focus{border-color:var(--blue)}
+.btn-save-pl{display:flex;align-items:center;gap:8px;padding:11px 24px;background:var(--green);color:#fff;border:none;border-radius:22px;font-size:13.5px;font-weight:700;cursor:pointer;font-family:inherit;transition:.2s;margin:20px}
+.btn-save-pl:hover{background:#219a52}
+.btn-save-pl:disabled{opacity:.5;cursor:default}
 
 /* MODAL */
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:500;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:.25s}
@@ -92,14 +99,24 @@ body{font-family:'DM Sans',sans-serif;font-size:14px;color:var(--text);backgroun
 .form-group input,.form-group select,.form-group textarea{padding:11px 14px;border:1.5px solid var(--border);border-radius:10px;font-size:13.5px;font-family:inherit;outline:none;transition:.2s;background:#fff}
 .form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--blue)}
 .form-group textarea{resize:vertical;min-height:80px}
-.img-note{font-size:12px;color:var(--text-muted);margin-top:6px;line-height:1.6;background:#f0f4fa;padding:10px 14px;border-radius:8px}
+
+/* IMAGE UPLOAD */
+.img-upload-wrap{display:flex;flex-direction:column;gap:10px}
+.img-upload-btn{display:flex;align-items:center;justify-content:center;gap:10px;padding:14px;border:2px dashed var(--border);border-radius:12px;cursor:pointer;transition:.2s;background:#fafbff;font-size:13.5px;font-weight:600;color:var(--blue-mid);position:relative}
+.img-upload-btn:hover{border-color:var(--blue-mid);background:#f0f4fa}
+.img-upload-btn input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+.img-upload-btn.uploading{opacity:.6;pointer-events:none}
+.img-preview-row{display:flex;align-items:center;gap:12px;padding:10px;background:var(--bg);border-radius:10px;border:1px solid var(--border)}
+.img-preview-row img{width:56px;height:56px;object-fit:contain;border-radius:8px;border:1px solid var(--border);background:#fff}
+.img-preview-row span{font-size:12px;color:var(--green);font-weight:600;flex:1}
+.img-preview-row .clear-img{background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:13px;padding:4px}
+
 .modal-footer{display:flex;gap:10px;justify-content:flex-end;padding-top:20px;border-top:1px solid var(--border);margin-top:8px}
-.btn-cancel{padding:11px 22px;border:1.5px solid var(--border);border-radius:22px;font-size:13.5px;font-weight:600;cursor:pointer;background:#fff;transition:.2s;font-family:inherit}
-.btn-save{padding:11px 26px;background:var(--blue-dark);color:#fff;border:none;border-radius:22px;font-size:13.5px;font-weight:700;cursor:pointer;transition:.2s;font-family:inherit;display:flex;align-items:center;gap:8px}
+.btn-cancel{padding:11px 22px;border:1.5px solid var(--border);border-radius:22px;font-size:13.5px;font-weight:600;cursor:pointer;background:#fff;font-family:inherit}
+.btn-save{padding:11px 26px;background:var(--blue-dark);color:#fff;border:none;border-radius:22px;font-size:13.5px;font-weight:700;cursor:pointer;font-family:inherit;display:flex;align-items:center;gap:8px}
 .btn-save:hover{background:var(--blue-mid)}
 .btn-save:disabled{opacity:.5;cursor:default}
 
-/* Toast */
 .toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--blue-dark);color:#fff;padding:12px 22px;border-radius:28px;font-size:13px;font-weight:600;z-index:999;transition:.35s;white-space:nowrap;box-shadow:0 6px 24px rgba(0,0,0,.2);opacity:0}
 .toast.show{transform:translateX(-50%) translateY(0);opacity:1}
 .toast.success{background:var(--green)}
@@ -113,7 +130,7 @@ body{font-family:'DM Sans',sans-serif;font-size:14px;color:var(--text);backgroun
 
 @media(max-width:700px){
   .stats-row{grid-template-columns:1fr 1fr}
-  .prod-table-head,.prod-row{grid-template-columns:50px 1fr 90px 80px}
+  .prod-table-head,.prod-row{grid-template-columns:56px 1fr 100px 90px}
   .prod-table-head>*:nth-child(4),.prod-table-head>*:nth-child(5),
   .prod-row>*:nth-child(4),.prod-row>*:nth-child(5){display:none}
   .form-grid{grid-template-columns:1fr}
@@ -150,6 +167,8 @@ body{font-family:'DM Sans',sans-serif;font-size:14px;color:var(--text);backgroun
   </div>
 
   <div class="admin-body">
+
+    <!-- STATS -->
     <div class="stats-row">
       <div class="stat-card"><h3>Total Products</h3><div class="num" id="statTotal">—</div><div class="sub">In your store</div></div>
       <div class="stat-card"><h3>iPhones</h3><div class="num" id="statIphone">—</div><div class="sub">Listed</div></div>
@@ -157,28 +176,37 @@ body{font-family:'DM Sans',sans-serif;font-size:14px;color:var(--text);backgroun
       <div class="stat-card"><h3>Other</h3><div class="num" id="statOther">—</div><div class="sub">Watches, iPads, AirPods</div></div>
     </div>
 
+    <!-- TABS -->
     <div class="tabs">
-      <button class="tab active" onclick="filterTab('All',this)">All Products</button>
-      <button class="tab" onclick="filterTab('iPhone',this)">iPhones</button>
-      <button class="tab" onclick="filterTab('MacBook',this)">MacBooks</button>
-      <button class="tab" onclick="filterTab('Watch',this)">Watches</button>
-      <button class="tab" onclick="filterTab('iPad',this)">iPads</button>
-      <button class="tab" onclick="filterTab('AirPods',this)">AirPods</button>
+      <button class="tab active" onclick="switchTab('products',this)">All Products</button>
+      <button class="tab" onclick="switchTab('iphone',this)">iPhones</button>
+      <button class="tab" onclick="switchTab('macbook',this)">MacBooks</button>
+      <button class="tab" onclick="switchTab('watch',this)">Watches</button>
+      <button class="tab" onclick="switchTab('ipad',this)">iPads</button>
+      <button class="tab" onclick="switchTab('airpods',this)">AirPods</button>
+      <button class="tab" onclick="switchTab('pricelist',this)" style="background:#fff3cd;border-color:#f0c040;color:#856404">📋 Pricelist</button>
     </div>
 
-    <div class="toolbar">
-      <div class="toolbar-search"><input type="text" placeholder="Search products..." id="adminSearch" oninput="renderTable()"><i class="fa fa-search"></i></div>
-      <button class="btn-add" onclick="openModal()"><i class="fa fa-plus"></i> Add New Product</button>
+    <!-- PRODUCTS VIEW -->
+    <div id="viewProducts">
+      <div class="toolbar">
+        <div class="toolbar-search"><input type="text" placeholder="Search products..." id="adminSearch" oninput="renderTable()"><i class="fa fa-search"></i></div>
+        <button class="btn-add" onclick="openModal()"><i class="fa fa-plus"></i> Add New Product</button>
+      </div>
+      <div class="prod-table">
+        <div class="prod-table-head">
+          <div>Image</div><div>Product</div><div>Price</div><div>Category</div><div>Stock</div><div>Actions</div>
+        </div>
+        <div id="prodTableBody"><div class="loading"><i class="fa fa-circle-notch"></i>Loading products...</div></div>
+      </div>
     </div>
 
-    <div class="prod-table">
-      <div class="prod-table-head">
-        <div>Image</div><div>Product</div><div>Price</div><div>Category</div><div>Stock</div><div>Actions</div>
-      </div>
-      <div id="prodTableBody">
-        <div class="loading"><i class="fa fa-circle-notch"></i>Loading products...</div>
-      </div>
+    <!-- PRICELIST VIEW -->
+    <div id="viewPricelist" style="display:none">
+      <div class="pricelist-editor" id="pricelistEditor"></div>
+      <button class="btn-save-pl" id="savePlBtn" onclick="savePricelist()"><i class="fa fa-save"></i> Save All Pricelist Changes</button>
     </div>
+
   </div>
 </div>
 
@@ -210,7 +238,7 @@ body{font-family:'DM Sans',sans-serif;font-size:14px;color:var(--text);backgroun
 
         <div class="form-group">
           <label>Badge</label>
-          <input type="text" id="fBadge" placeholder="Brand New" value="Brand New">
+          <input type="text" id="fBadge" value="Brand New">
         </div>
 
         <div class="form-group">
@@ -238,12 +266,20 @@ body{font-family:'DM Sans',sans-serif;font-size:14px;color:var(--text);backgroun
           <textarea id="fDesc" placeholder="Short product description..."></textarea>
         </div>
 
+        <!-- IMAGE UPLOAD -->
         <div class="form-group form-full">
-          <label>Image Filename</label>
-          <input type="text" id="fImg" placeholder="Apple iPhone 16.jpg">
-          <div class="img-note">
-            ⚠️ Type the exact filename of the image that is in your site folder.<br>
-            Example: <strong>Apple iPhone 16.jpg</strong> or <strong>Apple Watch Ultra.webp</strong>
+          <label>Product Image</label>
+          <div class="img-upload-wrap">
+            <div class="img-upload-btn" id="uploadBtn">
+              <input type="file" id="fImgFile" accept="image/*" onchange="uploadImage(event)">
+              <i class="fa fa-cloud-upload-alt"></i>
+              <span id="uploadBtnText">Click to upload image from your phone or computer</span>
+            </div>
+            <div class="img-preview-row" id="imgPreviewRow" style="display:none">
+              <img id="imgPreviewThumb" src="" alt="preview">
+              <span id="imgPreviewName">Image uploaded ✓</span>
+              <button class="clear-img" onclick="clearImage()"><i class="fa fa-times"></i></button>
+            </div>
           </div>
         </div>
 
@@ -260,27 +296,63 @@ body{font-family:'DM Sans',sans-serif;font-size:14px;color:var(--text);backgroun
 <div class="toast" id="toast"></div>
 
 <script>
-// ============================================================
-//  Config
-// ============================================================
 const BIN_ID  = "6a2792bcda38895dfe9ddc93";
 const API_KEY = "$2a$10$fzrT1ZEHuBXP67bUevLiueTIEt.7.ZDgL6vb11rv9GFxUFUjPpiyW";
 const BIN_URL = `https://api.jsonbin.io/v3/b/${BIN_ID}`;
+const IMGBB_KEY = "8cbc0bab07224ce75e8f50a8aa971f54";
 const ADMIN_PASSWORD = "iphones2025";
 
+// Default pricelist — stored in JSONBin under key "pricelist"
+const DEFAULT_PRICELIST = [
+  {section:"iPhone 8 / X / XR / XS", icon:"fa-mobile-alt", items:[
+    {name:"iPhone 8 (64GB)",price:"R1,600"},{name:"iPhone 8 (128GB)",price:"R1,750"},
+    {name:"iPhone 8 Plus",price:"R2,000"},{name:"iPhone X",price:"R2,200"},
+    {name:"iPhone XR",price:"R2,350"},{name:"iPhone XS",price:"R2,400"},{name:"iPhone XS Max",price:"R2,800"}
+  ]},
+  {section:"iPhone 11 / 12 / 13 / 14", icon:"fa-mobile-alt", items:[
+    {name:"iPhone 11",price:"R3,200"},{name:"iPhone 11 Pro",price:"R3,700"},{name:"iPhone 11 Pro Max",price:"R4,000"},
+    {name:"iPhone 12",price:"R4,000"},{name:"iPhone 12 Mini",price:"R3,800"},{name:"iPhone 12 Pro",price:"R4,500"},
+    {name:"iPhone 12 Pro Max",price:"R5,200"},{name:"iPhone 13",price:"R5,500"},{name:"iPhone 13 Pro",price:"R6,500"},
+    {name:"iPhone 13 Pro Max",price:"R7,000"},{name:"iPhone 14",price:"R6,000"},{name:"iPhone 14 Plus",price:"R6,800"},
+    {name:"iPhone 14 Pro",price:"R7,500"},{name:"iPhone 14 Pro Max",price:"R9,000"}
+  ]},
+  {section:"iPhone 15 / 16 / 17", icon:"fa-mobile-alt", items:[
+    {name:"iPhone 15",price:"R7,000"},{name:"iPhone 15 Plus",price:"R7,800"},{name:"iPhone 15 Pro",price:"R9,500"},
+    {name:"iPhone 15 Pro Max",price:"R11,500"},{name:"iPhone 16",price:"R9,500"},{name:"iPhone 16 Plus",price:"R11,500"},
+    {name:"iPhone 16 Pro",price:"R12,500"},{name:"iPhone 16 Pro Max",price:"R15,000"},
+    {name:"iPhone 17",price:"R14,000"},{name:"iPhone 17 Air",price:"R15,000"},
+    {name:"iPhone 17 Pro",price:"R17,000"},{name:"iPhone 17 Pro Max",price:"R19,999"}
+  ]},
+  {section:"AirPods", icon:"fa-headphones", items:[
+    {name:"AirPods Max",price:"R2,500"},{name:"AirPods Pro 2nd Gen",price:"R900"},
+    {name:"AirPods 3rd Gen",price:"R1,100"},{name:"AirPods 4th Gen",price:"R1,500"}
+  ]},
+  {section:"MacBooks", icon:"fa-laptop", items:[
+    {name:"MacBook Air M1",price:"R6,000"},{name:"MacBook Pro M1",price:"R8,000"},
+    {name:"MacBook Air M2",price:"R8,500"},{name:"MacBook Pro M3",price:"R13,500"},
+    {name:"MacBook Air M4",price:"R14,000"}
+  ]},
+  {section:"Apple Watches", icon:"fa-clock", items:[
+    {name:"Apple Watch S2",price:"R1,000"},{name:"Apple Watch S6",price:"R2,500"},
+    {name:"Apple Watch S7",price:"R3,000"},{name:"Apple Watch S8",price:"R4,000"},
+    {name:"Apple Watch Ultra",price:"R6,500"}
+  ]}
+];
+
 let allProducts = [];
-let activeTab = 'All';
+let pricelist = [];
+let activeTab = 'products';
 let editingIndex = null;
+let uploadedImgUrl = null;
 
 // ============================================================
-//  JSONBin helpers
+//  JSONBin
 // ============================================================
 async function loadBin() {
   const res = await fetch(BIN_URL + "/latest", { headers: { "X-Access-Key": API_KEY } });
   const data = await res.json();
-  return Array.isArray(data.record) ? data.record : [];
+  return data.record;
 }
-
 async function saveBin(data) {
   await fetch(BIN_URL, {
     method: "PUT",
@@ -293,11 +365,10 @@ async function saveBin(data) {
 //  Login
 // ============================================================
 function doLogin() {
-  const pass = document.getElementById('loginPass').value;
-  if (pass === ADMIN_PASSWORD) {
+  if (document.getElementById('loginPass').value === ADMIN_PASSWORD) {
     document.getElementById('loginScreen').style.display = 'none';
     document.getElementById('adminApp').style.display = 'block';
-    loadProducts();
+    loadAll();
   } else {
     document.getElementById('loginError').style.display = 'block';
     document.getElementById('loginPass').value = '';
@@ -306,23 +377,32 @@ function doLogin() {
 function doLogout() {
   document.getElementById('loginScreen').style.display = 'flex';
   document.getElementById('adminApp').style.display = 'none';
-  document.getElementById('loginPass').value = '';
 }
 document.getElementById('loginPass').addEventListener('keydown', e => { if(e.key==='Enter') doLogin(); });
 
 // ============================================================
-//  Load
+//  Load everything
 // ============================================================
-async function loadProducts() {
+async function loadAll() {
   try {
-    allProducts = await loadBin();
+    const record = await loadBin();
+    allProducts = Array.isArray(record.products) ? record.products : (Array.isArray(record) ? record : []);
+    pricelist = Array.isArray(record.pricelist) ? record.pricelist : DEFAULT_PRICELIST;
     updateStats();
     renderTable();
+    renderPricelist();
   } catch(e) {
-    showToast('Error loading products', 'error');
+    showToast('Error loading data', 'error');
   }
 }
 
+async function saveAll() {
+  await saveBin({ products: allProducts, pricelist });
+}
+
+// ============================================================
+//  Stats
+// ============================================================
 function updateStats() {
   document.getElementById('statTotal').textContent = allProducts.length;
   document.getElementById('statIphone').textContent = allProducts.filter(p=>p.category==='iPhone').length;
@@ -331,12 +411,25 @@ function updateStats() {
 }
 
 // ============================================================
-//  Table
+//  Tabs
+// ============================================================
+function switchTab(tab, el) {
+  activeTab = tab;
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('viewProducts').style.display = tab === 'pricelist' ? 'none' : 'block';
+  document.getElementById('viewPricelist').style.display = tab === 'pricelist' ? 'block' : 'none';
+  if (tab !== 'pricelist') renderTable();
+}
+
+// ============================================================
+//  Products table
 // ============================================================
 function renderTable() {
-  const search = document.getElementById('adminSearch').value.toLowerCase();
+  const search = (document.getElementById('adminSearch').value || '').toLowerCase();
+  const catMap = {iphone:'iPhone',macbook:'MacBook',watch:'Watch',ipad:'iPad',airpods:'AirPods'};
   let filtered = allProducts;
-  if (activeTab !== 'All') filtered = filtered.filter(p => p.category === activeTab);
+  if (activeTab !== 'products' && catMap[activeTab]) filtered = filtered.filter(p => p.category === catMap[activeTab]);
   if (search) filtered = filtered.filter(p => p.name.toLowerCase().includes(search));
 
   const body = document.getElementById('prodTableBody');
@@ -345,7 +438,7 @@ function renderTable() {
   body.innerHTML = filtered.map(p => {
     const realIndex = allProducts.indexOf(p);
     return `<div class="prod-row">
-      <img class="prod-thumb" src="${p.img}" alt="${p.name}" onerror="this.style.opacity='.2'">
+      <img class="prod-thumb" src="${p.img}" alt="${p.name}" onerror="this.style.opacity='.15'">
       <div class="prod-name-cell"><h4>${p.name}</h4><p>${(p.desc||'').substring(0,50)}...</p></div>
       <div class="prod-price">R${Number(p.price).toLocaleString()}</div>
       <div><span class="cat-badge">${p.category}</span></div>
@@ -358,11 +451,41 @@ function renderTable() {
   }).join('');
 }
 
-function filterTab(tab, el) {
-  activeTab = tab;
-  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-  el.classList.add('active');
-  renderTable();
+// ============================================================
+//  Pricelist editor
+// ============================================================
+function renderPricelist() {
+  const el = document.getElementById('pricelistEditor');
+  el.innerHTML = pricelist.map((section, si) => `
+    <div class="pl-section">
+      <div class="pl-section-head"><i class="fa ${section.icon}"></i> ${section.section}</div>
+      ${section.items.map((item, ii) => `
+        <div class="pl-row">
+          <span class="pl-name">${item.name}</span>
+          <input class="pl-price-input" value="${item.price}" onchange="updatePlPrice(${si},${ii},this.value)" placeholder="R0">
+        </div>
+      `).join('')}
+    </div>
+  `).join('');
+}
+
+function updatePlPrice(si, ii, val) {
+  pricelist[si].items[ii].price = val;
+}
+
+async function savePricelist() {
+  const btn = document.getElementById('savePlBtn');
+  btn.disabled = true;
+  btn.innerHTML = '<i class="fa fa-circle-notch fa-spin"></i> Saving...';
+  try {
+    await saveAll();
+    showToast('✓ Pricelist saved!', 'success');
+  } catch(e) {
+    showToast('Error saving', 'error');
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = '<i class="fa fa-save"></i> Save All Pricelist Changes';
+  }
 }
 
 // ============================================================
@@ -370,39 +493,97 @@ function filterTab(tab, el) {
 // ============================================================
 function openModal(index) {
   editingIndex = index !== undefined ? index : null;
+  uploadedImgUrl = null;
   document.getElementById('modalTitle').textContent = editingIndex !== null ? 'Edit Product' : 'Add New Product';
   document.getElementById('saveBtnText').textContent = editingIndex !== null ? 'Save Changes' : 'Save Product';
+  document.getElementById('imgPreviewRow').style.display = 'none';
+  document.getElementById('uploadBtn').style.display = 'flex';
+  document.getElementById('uploadBtnText').textContent = 'Click to upload image from your phone or computer';
 
   if (editingIndex !== null) {
     const p = allProducts[editingIndex];
-    document.getElementById('fName').value = p.name || '';
-    document.getElementById('fCategory').value = p.category || 'iPhone';
-    document.getElementById('fBadge').value = p.badge || 'Brand New';
-    document.getElementById('fPrice').value = p.price || '';
-    document.getElementById('fOldPrice').value = p.oldPrice || '';
-    document.getElementById('fStock').value = p.stock || '';
-    document.getElementById('fReviews').value = p.reviews || '';
-    document.getElementById('fDesc').value = p.desc || '';
-    document.getElementById('fImg').value = p.img || '';
+    document.getElementById('fName').value = p.name||'';
+    document.getElementById('fCategory').value = p.category||'iPhone';
+    document.getElementById('fBadge').value = p.badge||'Brand New';
+    document.getElementById('fPrice').value = p.price||'';
+    document.getElementById('fOldPrice').value = p.oldPrice||'';
+    document.getElementById('fStock').value = p.stock||'';
+    document.getElementById('fReviews').value = p.reviews||'';
+    document.getElementById('fDesc').value = p.desc||'';
+    // Show existing image
+    if (p.img) {
+      uploadedImgUrl = p.img;
+      document.getElementById('imgPreviewThumb').src = p.img;
+      document.getElementById('imgPreviewName').textContent = 'Current image ✓';
+      document.getElementById('imgPreviewRow').style.display = 'flex';
+      document.getElementById('uploadBtn').style.display = 'flex';
+      document.getElementById('uploadBtnText').textContent = 'Upload a new image to replace';
+    }
   } else {
-    document.getElementById('fName').value = '';
-    document.getElementById('fCategory').value = 'iPhone';
-    document.getElementById('fBadge').value = 'Brand New';
-    document.getElementById('fPrice').value = '';
-    document.getElementById('fOldPrice').value = '';
-    document.getElementById('fStock').value = '';
-    document.getElementById('fReviews').value = '';
-    document.getElementById('fDesc').value = '';
-    document.getElementById('fImg').value = '';
+    document.getElementById('fName').value='';
+    document.getElementById('fCategory').value='iPhone';
+    document.getElementById('fBadge').value='Brand New';
+    document.getElementById('fPrice').value='';
+    document.getElementById('fOldPrice').value='';
+    document.getElementById('fStock').value='';
+    document.getElementById('fReviews').value='';
+    document.getElementById('fDesc').value='';
   }
   document.getElementById('modalOverlay').classList.add('open');
 }
 
 function closeModal() { document.getElementById('modalOverlay').classList.remove('open'); }
-function closeModalOutside(e) { if (e.target === document.getElementById('modalOverlay')) closeModal(); }
+function closeModalOutside(e) { if(e.target===document.getElementById('modalOverlay')) closeModal(); }
 
 // ============================================================
-//  Save
+//  ImgBB Upload
+// ============================================================
+async function uploadImage(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+
+  const btn = document.getElementById('uploadBtn');
+  btn.classList.add('uploading');
+  document.getElementById('uploadBtnText').textContent = 'Uploading image...';
+
+  try {
+    const formData = new FormData();
+    formData.append('image', file);
+
+    const res = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_KEY}`, {
+      method: 'POST',
+      body: formData
+    });
+    const data = await res.json();
+
+    if (data.success) {
+      uploadedImgUrl = data.data.url;
+      document.getElementById('imgPreviewThumb').src = uploadedImgUrl;
+      document.getElementById('imgPreviewName').textContent = '✓ ' + file.name + ' uploaded!';
+      document.getElementById('imgPreviewRow').style.display = 'flex';
+      document.getElementById('uploadBtnText').textContent = 'Upload a different image';
+      showToast('Image uploaded!', 'success');
+    } else {
+      showToast('Image upload failed', 'error');
+      document.getElementById('uploadBtnText').textContent = 'Click to upload image';
+    }
+  } catch(err) {
+    showToast('Upload error: ' + err.message, 'error');
+    document.getElementById('uploadBtnText').textContent = 'Click to upload image';
+  } finally {
+    btn.classList.remove('uploading');
+  }
+}
+
+function clearImage() {
+  uploadedImgUrl = null;
+  document.getElementById('imgPreviewRow').style.display = 'none';
+  document.getElementById('uploadBtnText').textContent = 'Click to upload image from your phone or computer';
+  document.getElementById('fImgFile').value = '';
+}
+
+// ============================================================
+//  Save product
 // ============================================================
 async function saveProduct() {
   const btn = document.getElementById('saveBtn');
@@ -424,17 +605,14 @@ async function saveProduct() {
       stock: parseInt(document.getElementById('fStock').value) || 0,
       reviews: parseInt(document.getElementById('fReviews').value) || 99,
       desc: document.getElementById('fDesc').value.trim(),
-      img: document.getElementById('fImg').value.trim(),
+      img: uploadedImgUrl || (editingIndex !== null ? allProducts[editingIndex].img : ''),
       colors: editingIndex !== null ? (allProducts[editingIndex].colors || ['#1c1c1e']) : ['#1c1c1e'],
     };
 
-    if (editingIndex !== null) {
-      allProducts[editingIndex] = data;
-    } else {
-      allProducts.push(data);
-    }
+    if (editingIndex !== null) allProducts[editingIndex] = data;
+    else allProducts.push(data);
 
-    await saveBin(allProducts);
+    await saveAll();
     updateStats();
     renderTable();
     closeModal();
@@ -454,7 +632,7 @@ async function deleteProduct(index, name) {
   if (!confirm(`Delete "${name}"?\n\nThis cannot be undone.`)) return;
   try {
     allProducts.splice(index, 1);
-    await saveBin(allProducts);
+    await saveAll();
     updateStats();
     renderTable();
     showToast('Product deleted', 'success');
@@ -475,3 +653,4 @@ function showToast(msg, type) {
 </script>
 </body>
 </html>
+ENDOFFILE
